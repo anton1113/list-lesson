@@ -1,20 +1,25 @@
 package com.gg.list;
 
 public class MyListImpl implements MyList {
-
+private Object[] container = new Object[100];
     @Override
     public void add(Object elem) {
-
+        for (int i = 0; i < container.length; i++) {
+            if (container[i] == null) {
+                container[i] = elem;
+                return;
+            }
+        }
     }
 
     @Override
     public void add(Object elem, int index) {
-
+container[index] = elem;
     }
 
     @Override
     public Object get(int index) {
-        return null;
+        return container[index];
     }
 
     @Override
