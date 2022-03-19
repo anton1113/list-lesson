@@ -16,7 +16,7 @@ class MyListImplTest {
     private MyList list;
 
     @BeforeEach
-    private void init() {
+    public void init() {
         MyList list = new MyListImpl();
         list.add(FOO);
         list.add(BAR);
