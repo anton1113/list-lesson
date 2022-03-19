@@ -1,6 +1,5 @@
 package com.gg.list;
 
-import java.util.Arrays;
 
 public class MyListImpl implements MyList {
 private Object[] container = new Object[100];
@@ -79,6 +78,18 @@ container[index] = elem;
 
     @Override
     public boolean isEmpty() {
-      return container.length == 0 || Arrays.toString(container).isEmpty();
+        if (container.length == 0) {
+            return true;
+        }
+        int count = 0;
+        for (Object o : container) {
+            if (o != null) {
+                count++;
+            }
+         }
+        if (count > 0) {
+            return false;
+        }
+        else {return true;}
+        }
     }
-}
