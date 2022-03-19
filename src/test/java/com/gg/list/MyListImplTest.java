@@ -25,10 +25,7 @@ class MyListImplTest {
 
     @Test
     public void testGet() {
-        assertEquals(list.get(0), FOO);
-        assertEquals(list.get(1), BAR);
-        assertEquals(list.get(2), BUS);
-
+        assertListContent(list, FOO, BAR, BUS);
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));
     }
 
@@ -76,5 +73,24 @@ class MyListImplTest {
     public void testToString() {
         String expected = String.format("[\"%s\", \"%s\", \"%s\"]", FOO, BAR, BUS);
         assertEquals(expected, list.toString());
+    }
+
+    @Test
+    public void testReverse() {
+        list.reverse();
+        assertListContent(list, BUS, BAR, FOO);
+    }
+
+    @Test
+    public void testSubList() {
+        assertListContent(list.subList(0, 1), FOO, BAR);
+        assertListContent(list.subList(2, 2), BUS);
+        assertThrows(IndexOutOfBoundsException.class, () -> list.subList(-1, 0));
+    }
+
+    private void assertListContent(MyList list, Object... elements) {
+        for (int i = 0; i < elements.length; i++) {
+            assertEquals(elements[i], list.get(i));
+        }
     }
 }

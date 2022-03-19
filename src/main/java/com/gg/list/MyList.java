@@ -1,5 +1,7 @@
 package com.gg.list;
 
+import com.gg.list.exception.NotImplementedException;
+
 public interface MyList {
 
     void add(Object elem);
@@ -27,6 +29,15 @@ public interface MyList {
     int size();
 
     boolean isEmpty();
+
+    default void reverse() {
+        throw new NotImplementedException("Vovan will handle it");
+    }
+
+    default MyList subList(int start, int end) {
+        throw new NotImplementedException("Vovan will handle it");
+    }
+
 
     static MyListImpl of(Object... elems) {
         MyListImpl list = new MyListImpl();
