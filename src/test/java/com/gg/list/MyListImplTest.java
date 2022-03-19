@@ -17,7 +17,7 @@ class MyListImplTest {
 
     @BeforeEach
     public void init() {
-        MyList list = new MyListImpl();
+        list = new MyListImpl();
         list.add(FOO);
         list.add(BAR);
         list.add(BUS);
@@ -27,7 +27,7 @@ class MyListImplTest {
     public void testGet() {
         assertEquals(list.get(0), FOO);
         assertEquals(list.get(1), BAR);
-        assertEquals(list.get(0), BUS);
+        assertEquals(list.get(2), BUS);
 
         assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));
     }
