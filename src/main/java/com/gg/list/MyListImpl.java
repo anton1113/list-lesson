@@ -1,6 +1,8 @@
 package com.gg.list;
 
 
+import java.util.Arrays;
+
 public class MyListImpl implements MyList {
 private Object[] container = new Object[100];
     @Override
@@ -62,7 +64,7 @@ container[index] = elem;
 
     @Override
     public void purge() {
-
+        Arrays.fill(container, null);
     }
 
     @Override
@@ -77,6 +79,19 @@ container[index] = elem;
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyListImpl myList = (MyListImpl) o;
+        return Arrays.equals(container, myList.container);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(container);
+    }
+
+    @Override
     public boolean isEmpty() {
         if (container.length == 0) {
             return true;
@@ -87,9 +102,16 @@ container[index] = elem;
                 count++;
             }
          }
-        if (count > 0) {
-            return false;
+        return count == 0;
         }
-        else {return true;}
-        }
+     public String toString() {
+        int noNullsCount = 0;
+         for (Object o :
+                 container) {
+             if (o != null) noNullsCount++;
+         }
+         Object[] o  = Arrays.copyOf(container, noNullsCount);
+         return Arrays.toString(o);
+
+     }
     }
